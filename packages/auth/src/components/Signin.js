@@ -12,7 +12,7 @@ export default function SignIn({ onSignIn }) {
 
   const onSubmit = async (data) => {
     try {
-      await fetch('http://localhost:1337/auth/local', {
+      await fetch(`${process.env.API_URL}/auth/local`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
