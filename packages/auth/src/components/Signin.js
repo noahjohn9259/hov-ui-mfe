@@ -10,6 +10,8 @@ SignIn.propTypes = {
 export default function SignIn({ onSignIn }) {
   const { register, handleSubmit } = useForm();
 
+  console.log(process.env.API_URL);
+
   const onSubmit = async (data) => {
     try {
       await fetch(`${process.env.API_URL}/auth/local`, {
