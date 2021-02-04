@@ -1,98 +1,96 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import { Link as RouterLink } from 'react-router-dom';
+import { Menu } from '@highoutput/ui-core';
+import { OutlineIcon } from '@highoutput/icons-outline';
+import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
-  '@global': {
-    ul: {
-      margin: 0,
-      padding: 0,
-      listStyle: 'none',
-    },
-    a: {
-      textDecoration: 'none',
-    },
-  },
-  appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-  },
-  toolbar: {
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  link: {
-    margin: theme.spacing(1, 1.5),
-  },
-  heroContent: {
-    padding: theme.spacing(8, 0, 6),
-  },
-  cardHeader: {
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[700],
-  },
-  cardPricing: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    marginBottom: theme.spacing(2),
-  },
-  footer: {
-    borderTop: `1px solid ${theme.palette.divider}`,
-    marginTop: theme.spacing(8),
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(6),
-      paddingBottom: theme.spacing(6),
-    },
-  },
-}));
-
-export default function Header({ isSignedIn, onSignOut }) {
-  const classes = useStyles();
-
-  const onClick = () => {
-    if (isSignedIn && onSignOut) {
-      onSignOut();
-    }
-  };
+export default function Header() {
+  // const { isSignedIn, onSignOut } = props;
+  // const onClick = () => {
+  //   if (isSignedIn && onSignOut) {
+  //     onSignOut();
+  //   }
+  // };
 
   return (
-    <React.Fragment>
-      <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        className={classes.appBar}
-      >
-        <Toolbar className={classes.toolbar}>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/"
-          >
-            App
-          </Typography>
-          <Button
-            color="primary"
-            variant="outlined"
-            className={classes.link}
-            component={RouterLink}
-            to={isSignedIn ? '/' : '/auth/signin'}
-            onClick={onClick}
-          >
-            {isSignedIn ? 'Logout' : 'Login'}
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </React.Fragment>
+    <div className="relative bg-white">
+      <div className="relative z-20 shadow">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
+          <div>
+            <a href="#" className="flex">
+              <span className="sr-only">Workflow</span>
+              <img
+                className="h-8 w-auto sm:h-10"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                alt=""
+              />
+            </a>
+          </div>
+          <div className="-mr-2 -my-2 md:hidden">
+            <button
+              type="button"
+              className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+              <span className="sr-only">Open menu</span>
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="hidden md:flex-1 md:flex md:items-center md:justify-between">
+            <Menu variant="default">
+              <Menu.SubMenu submenuTitle="Company">
+                <Menu.Item>About</Menu.Item>
+                <Menu.Item>Customers</Menu.Item>
+                <Menu.Item>Press</Menu.Item>
+                <Menu.Item>Careers</Menu.Item>
+                <Menu.Item>Privacy</Menu.Item>
+              </Menu.SubMenu>
+              <Menu.SubMenu submenuTitle="Resources">
+                <Menu.Item leftIcon={<OutlineIcon className="h-5 w-5" type="academic-cap" />}>
+                  Community
+                </Menu.Item>
+                <Menu.Item leftIcon={<OutlineIcon className="h-5 w-5" type="adjustments" />}>
+                  Partners
+                </Menu.Item>
+                <Menu.Item rightIcon={<OutlineIcon className="h-5 w-5" type="annotation" />}>
+                  Guides
+                </Menu.Item>
+                <Menu.Item rightIcon={<OutlineIcon className="h-5 w-5" type="archive" />}>
+                  Webinars
+                </Menu.Item>
+              </Menu.SubMenu>
+              <Menu.SubMenu disabled submenuTitle="Solutions">
+                <Menu.Item>Analytics</Menu.Item>
+                <Menu.Item>Security</Menu.Item>
+              </Menu.SubMenu>
+              <Menu.Item disabled>FAQ</Menu.Item>
+              <Menu.Item>Contact Us</Menu.Item>
+            </Menu>
+            <div className="flex items-center md:ml-12">
+              <Link
+                to="/auth/signin"
+                className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Sign in
+              </Link>
+              <Link
+                to="/auth/signup"
+                className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                Sign up
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -11,16 +11,14 @@ export default () => {
       onNavigate: ({ pathname: nextPathname }) => {
         const { pathname } = history.location;
         if (pathname !== nextPathname) {
-          history.push(nextPathname)
+          history.push(nextPathname);
         }
       },
-      initialPath: history.location.pathname
+      initialPath: history.location.pathname,
     });
 
-    history.listen(onParentNavigate)
-  }, [])
+    history.listen(onParentNavigate);
+  }, []);
 
-  return (
-    <div ref={ref}></div>
-  )
-}
+  return <div ref={ref}></div>;
+};

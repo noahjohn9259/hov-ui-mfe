@@ -12,17 +12,18 @@ export default function SignIn({ onSignIn }) {
 
   console.log(process.env.API_URL);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (formData) => {
     try {
-      await fetch(`${process.env.API_URL}/auth/local`, {
+      const result = await fetch(`${process.env.API_URL}/auth/local`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json;charset=UTF-8',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
-      onSignIn();
+      const data = await result.json();
+      onSignIn(data);
       // eslint-disable-next-line no-empty
     } catch {}
   };
@@ -107,7 +108,6 @@ export default function SignIn({ onSignIn }) {
               <Button
                 className="w-full justify-center flex"
                 type="button"
-                colorScheme="brand"
                 size="md"
                 variant="primary"
                 onClick={handleSubmit(onSubmit)}>

@@ -8,7 +8,7 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
-    "@highoutput/ui-core": "0.0.30",
+    "@highoutput/ui-core": "0.0.31",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "react": "^17.0.1",
